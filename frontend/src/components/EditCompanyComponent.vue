@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-content-center" v-if="isAuthenticated">
+  <div class="row justify-content-center">
       <div class="col-md-6">
           <!-- Update stakeholder content -->
           <h3 class="text-center">Update Company</h3>
