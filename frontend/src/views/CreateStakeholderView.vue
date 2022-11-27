@@ -4,11 +4,8 @@
           <h3 class="text-center">Stakeholder Registration</h3>
           <form @submit.prevent="handleSubmitForm">
               <label>Stakeholder ID will be auto-generated</label>
-
-              <div class="form-group">
-                  <label>Company ID the stakeholder is a part of</label>
-                  <input type="text" class="form-control" v-model="stakeholder.c_id" required>
-              </div>
+              <br />
+              <label>The Company ID this stakeholder is under: {{ this.stakeholder.c_id }}</label>
               <div class="form-group">
                   <label>First Name</label>
                   <input type="text" class="form-control" v-model="stakeholder.s_fname" required>
