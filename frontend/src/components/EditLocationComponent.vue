@@ -1,13 +1,10 @@
 <template>
-  <div class="row justify-content-center" v-if="isAuthenticated">
+  <div class="row justify-content-center">
       <div class="col-md-6">
           <!-- Update stakeholder content -->
           <h3 class="text-center">Update Location</h3>
           <form @submit.prevent="handleUpdateForm">
-              <div class="form-group">
-                  <label>Company ID the location is under</label>
-                  <input type="text" class="form-control" v-model="location.c_id" required>
-              </div>
+              <label>Company ID the location is under: {{ location.c_id }}</label>
 
               <div class="form-group">
                   <label>First Date Opened</label>

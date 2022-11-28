@@ -1,53 +1,50 @@
 <template>
-  <div class="row justify-content-center" v-if="isAuthenticated">
-      <div class="col-md-6">
-          <h3 class="text-center">Update Company</h3>
-          <form @submit.prevent="handleUpdateForm">
-            
-              <!-- You are not allowed to edit l_id as it breaks the DB -->
-              <label>License ID: {{this.company_license.l_id}}</label>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="text-center">Update License</h3>
+            <form @submit.prevent="handleUpdateForm">
+                <!-- You are not allowed to edit l_id as it breaks the DB -->
+                <label>License ID: {{this.company_license.l_id}}</label>
+                <br />
+                <label>The location ID this entry is under: {{ company_license.loc_id }}</label>
 
-              <div class="form-group">
-                  <label>Location ID this entry is under</label>
-                  <input type="text" class="form-control" v-model="company_license.loc_id" required>
-              </div>
-
-              <div class="form-group">
-                  <label>License Status</label>
-                  <!-- <input type="text" class="form-control" v-model="company_license.license_status" required> -->
-                  <select class="form-select" v-model="company_license.license_status">
-                    <option selected>{{company_license.license_status}}</option>
-                    <option v-if="this.getLicenseStatus === 'approved'" value="Denied">Denied</option>
-                    <option v-else value="Approved">Approved</option>
-                  </select>
-              </div>
-
-              <div class="form-group">
-                  <label>License Name</label>
-                  <input type="text" class="form-control" v-model="company_license.license_name" required>
-              </div>
-
-              <div class="form-group">
-                  <label>License Cost</label>
-                  <input step=0.01 type="number" class="form-control" v-model="company_license.license_cost" required>
-              </div>
-
-              <div class="form-group">
-                  <label>License Status Date</label>
-                  <input type="text" class="form-control" v-model="company_license.license_status_date" required>
-              </div>
-
-              <!-- <div class="form-group">
-                  <label>License Expiration Date</label>
-                  <input type="text" class="form-control" v-model="company_license.license_expire_date" required>
-              </div> -->
-
-              <button class="btn btn-danger mt-3">Update</button>
-
-          </form>
-      </div>
-  </div>
-</template>
+  
+                <div class="form-group">
+                    <label>License Status</label>
+                    <!-- <input type="text" class="form-control" v-model="company_license.license_status" required> -->
+                    <select class="form-select" v-model="company_license.license_status">
+                      <option selected>{{company_license.license_status}}</option>
+                      <option v-if="this.getLicenseStatus === 'approved'" value="Denied">Denied</option>
+                      <option v-else value="Approved">Approved</option>
+                    </select>
+                </div>
+  
+                <div class="form-group">
+                    <label>License Name</label>
+                    <input type="text" class="form-control" v-model="company_license.license_name" required>
+                </div>
+  
+                <div class="form-group">
+                    <label>License Cost</label>
+                    <input step=0.01 type="number" class="form-control" v-model="company_license.license_cost" required>
+                </div>
+  
+                <div class="form-group">
+                    <label>License Status Date</label>
+                    <input type="text" class="form-control" v-model="company_license.license_status_date" required>
+                </div>
+  
+                <!-- <div class="form-group">
+                    <label>License Expiration Date</label>
+                    <input type="text" class="form-control" v-model="company_license.license_expire_date" required>
+                </div> -->
+  
+                <button class="btn btn-danger mt-3">Update</button>
+  
+            </form>
+        </div>
+    </div>
+  </template>
 
 <script>
   import axios from 'axios';

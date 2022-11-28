@@ -1,36 +1,43 @@
 <!-- Component that displays all the companies -->
 
 <template>
-  <div class="row justify-content-center" v-if="isAuthenticated" >
-    <input type="text"
-         placeholder="Filter by department or employee"
-         v-model="filter" />
-
-    <router-link :to="{name: 'companysignup'}" class="btn btn-success btn-lg">Add Company</router-link>
-    <table class="table table-striped">
-      <thead class="table-dark">
-        <tr>
-          <th>Company Name</th>
-          <th>Company EIN</th>
-          <th># of Stakeholders</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-       <tr v-for="company, index in filteredRows" :key="company.c_id">
-          <td v-html="highlightMatches(company.c_name)"></td>
-          <td>{{ company.c_ein }}</td>
-          <td>{{ CompanyStakeholders[index] }}</td>
-          <td>
-            <!-- <router-link :to="{name: 'companysignup'}" class="btn btn-success">Add Company</router-link> -->
-            <router-link :to="{name: 'view-stakeholders', params: { c_id: company.c_id }}" class="btn btn-info mx-1">Stakeholders</router-link>
-            <router-link :to="{name: 'view-locations', params: { c_id: company.c_id }}" class="btn btn-info mx-1">Locations</router-link>
-            <router-link :to="{name: 'edit-company', params: { c_id: company.c_id }}" class="btn btn-success">Edit</router-link>
-            <button @click.prevent="deleteCompany(company.c_id)" class="btn btn-danger mx-1">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row justify-content-center">
+    <div class="col-12 col-xl-8 mb-4 mb-lg-0">
+      <div class="col-12 col-md-4 col-lg-2 d-flex align-items-center flex-nowrap">
+        <input class="form-control form-control-dark" type="text" placeholder="Search Company" aria-label="Search" v-model="filter">
+      </div>
+      <div class="card">
+        <router-link :to="{name: 'companysignup'}" class="btn btn-success btn-lg">Add Company</router-link>
+        <h5 class="card-header">Companies</h5>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">EIN</th>
+                  <th scope="col"># Of Stakeholders</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="company, index in filteredRows" :key="company.c_id">
+                  <td v-html="highlightMatches(company.c_name)"></td>
+                  <td>{{ company.c_ein }}</td>
+                  <td>{{ CompanyStakeholders[index] }}</td>
+                  <td>
+                    <router-link :to="{name: 'view-stakeholders', params: { c_id: company.c_id }}" class="btn btn-info mx-1">View Stakeholders</router-link>
+                    <router-link :to="{name: 'view-locations', params: { c_id: company.c_id }}" class="btn btn-info mx-1">Locations</router-link>
+                    <router-link :to="{name: 'edit-company', params: { c_id: company.c_id }}" class="btn btn-success">Edit</router-link>
+                    <button @click.prevent="deleteCompany(company.c_id)" class="btn btn-danger mx-1">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

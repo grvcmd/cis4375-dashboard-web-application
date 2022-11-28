@@ -22,6 +22,18 @@ const router = createRouter({
       component: () => import('../views/CompanyView.vue')
     },
     {
+      // View that displays all stakeholders
+      path: '/stakeholders',
+      name: 'view-all-stakeholders',
+      component: () => import('../views/AllStakeholdersView.vue')
+    },
+    {
+      // View that displays all licenses
+      path: '/licenses',
+      name: 'view-all-licenses',
+      component: () => import('../views/AllLicensesView.vue') 
+    },
+    {
       // View to edit a company
       path: '/companies/edit/:c_id',
       name: 'edit-company',
