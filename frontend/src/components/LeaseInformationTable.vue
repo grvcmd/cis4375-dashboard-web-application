@@ -10,31 +10,43 @@
  -->
 
  <template>
-  <div class="row justify-content-center" v-if="isAuthenticated">
-    <table class="table table-striped">
-      <thead class="table-dark">
-        <tr>
-          <th>First Date Opened</th>
-          <th>Purchase Price</th>
-          <th>Purchase Date</th>
-          <th>Lease Expiration Date</th>
-          <th>Rent</th>
-          <th>Property Owner Company</th>
-          <th>Property Owner EIN</th>
-        </tr>
-      </thead>
-      <tbody>
-       <tr>
-          <td>{{ Location.first_date_op}}</td>
-          <td>${{ Location.purchase_price }}</td>
-          <td>{{ Location.purchase_date }}</td>
-          <td>{{ Location.lease_exp_date }}</td>
-          <td>${{ Location.rent }}</td>
-          <td>{{ Location.property_owner_company }}</td>
-          <td>{{ Location.property_owner_ein }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row justify-content-center">
+    <div class="col-12 col-xl-8 mb-4 mb-lg-0">
+      <!-- <div class="col-12 col-md-4 col-lg-2 d-flex align-items-center flex-nowrap">
+        <input class="form-control form-control-dark" type="text" placeholder="Search Stakeholder" aria-label="Search" v-model="filter">
+      </div> -->
+      <div class="card">
+        <h5 class="card-header">Locations</h5>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">First Date Opened</th>
+                  <th scope="col">Purchase Price</th>
+                  <th scope="col">Purchase Date</th>
+                  <th scope="col">Lease Expiration Date</th>
+                  <th scope="col">Rent</th>
+                  <th scope="col">Property Owner Company</th>
+                  <th scope="col">Property Owner EIN</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ Location.first_date_op}}</td>
+                  <td>${{ Location.purchase_price }}</td>
+                  <td>{{ Location.purchase_date }}</td>
+                  <td>{{ Location.lease_exp_date }}</td>
+                  <td>${{ Location.rent }}</td>
+                  <td>{{ Location.property_owner_company }}</td>
+                  <td>{{ Location.property_owner_ein }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
