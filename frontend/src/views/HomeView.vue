@@ -2,11 +2,6 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-
-      <!-- SIDEBAR START -->
-
-      <!-- SIDEBAR END -->
-
       <!-- DASHBOARD START -->
       <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
         <!-- BREADCRUMB START -->
@@ -18,17 +13,37 @@
         <!-- BREADCRUMB END -->
         <h1 class="h2">Dashboard</h1>
         <p>This is the homepage to see overall business statistics</p>
+
         <div class="row my-4">
           <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
             <div class="card">
               <h5 class="card-header">Companies</h5>
               <div class="card-body">
-                <h5 class="card-title">200</h5>
-                  <p class="card-text text-success">5% increase since last month</p>
+                <h5 class="card-title">{{ countCompanies }}</h5>
+                  <p class="card-text text-success">in database</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="card">
+              <h5 class="card-header">Stakeholders</h5>
+              <div class="card-body">
+                <h5 class="card-title">{{ countStakeholders }}</h5>
+                  <p class="card-text text-success">in database</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="card">
+              <h5 class="card-header">Licenses</h5>
+              <div class="card-body">
+                <h5 class="card-title">{{ countLicenses }}</h5>
+                  <p class="card-text text-success">in database</p>
               </div>
             </div>
           </div>
         </div>
+
 
         <!-- TABLE PREVIEW START -->
         <div class="row">
@@ -76,9 +91,34 @@
       return {
         Companies: [],
         CompanyStakeholders: [],
+        Stakeholders: 0,
+        Licenses: 0,
         response: 0,
       }
       
+    },
+
+    computed: {
+      // get total companies in DB
+      countCompanies() {
+        return this.Companies.length
+      },
+
+      // get total stakeholders in DB
+      countStakeholders() {
+        axios.get('http://localhost:8080/api/stakeholders').then(res => {
+          this.Stakeholders = res.data.length
+        })
+        return this.Stakeholders
+      },
+
+      // get total licenses in DB
+      countLicenses() {
+        axios.get(`http://localhost:8080/api/company_licenses`).then(res => {
+          this.Licenses = res.data.length
+        })
+        return this.Licenses
+      }
     },
 
     created() {
